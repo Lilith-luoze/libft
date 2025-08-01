@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:57:33 by luozguo           #+#    #+#             */
-/*   Updated: 2025/05/20 20:51:42 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/01 17:59:36 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int	ft_str_is_alpha(char *str)
 	return (1);
 }
 
-// #include <stdio.h>
-// #include <string.h>
-// #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
-// int main()
-// {
-//     char *str = "trythisone\0";
+int main()
+{
+    char *str = "trythis1one";
 
-//     printf("%i", ft_str_is_alpha(str));
+    printf("%i", ft_str_is_alpha(str));
 
-//     return (0);
+    return (0);
 
-// }
+}

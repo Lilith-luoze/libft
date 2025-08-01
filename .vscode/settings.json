@@ -1,0 +1,8 @@
+{
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredHighContrastLightColorTheme": "Default Light Modern",
+    "workbench.preferredLightColorTheme": "Solarized Light",
+    "files.associations": {
+        "bitset": "c"
+    }
+}

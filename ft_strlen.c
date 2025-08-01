@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:56:34 by luozguo           #+#    #+#             */
-/*   Updated: 2025/05/21 12:56:35 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/01 17:33:45 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int ft_strlen(char *str)
 }
 
 // # include <stdio.h>
-// # include <string.h>
 
 // int main()
 // {

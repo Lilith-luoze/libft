@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:57:51 by luozguo           #+#    #+#             */
-/*   Updated: 2025/05/20 20:53:03 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/01 17:58:42 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,16 @@ char	*ft_strlowcase(char *str)
 	return (ori_str);
 }
 
-// #include <ctype.h>
-// #include <stdio.h>
-// #include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
 
-// int main()
-// {
-//     // test if it's only a read-only string, can YOU modify it? -No.
-//     // char *str = "i am pow. you are POW\0";
-//     // printf("%s", ft_strlowcase(str));
+int main()
+{
+    char str_2[] = "i am pow. you are POW";
 
-//     // the def successful version:
-//     char str[] = "i am pow. you are POW\0";
+    printf("test if this string is mutable:  %s", ft_strlowcase(str_2));
 
-//     printf("%s", ft_strlowcase(str));
+    return (0);
 
-//     return (0);
-
-// }
+}

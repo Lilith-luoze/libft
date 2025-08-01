@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:57:30 by luozguo           #+#    #+#             */
-/*   Updated: 2025/05/20 20:51:27 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/01 18:00:56 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_str_is_numeric(char *str)
 	return (1);
 }
 
+
 // #include <stdio.h>
-// #include <string.h>
 // int main()
 // {
 //     char *str = "6473\0";
