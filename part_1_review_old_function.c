@@ -106,40 +106,93 @@ void *ft_memcpy(void * dst, const void * src, size_t n)
 }
 
 // memmove : Non-destructive manner in terms of the data stored in src
-// How to check the memory overlapping? 
+
+static void ft_backward_cp(unsigned char *dst, const unsigned char *src, size_t len)
+{
+	size_t i = 0;
+	while (i < len)
+	{
+		dst[len - i - 1] = src[len - i - 1];
+		i++;
+	}
+}
+
+static void ft_forward_cp(unsigned char *dst, const unsigned char *src, size_t len)
+{
+	size_t i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
+// check the overlap of memory
 void *ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t i = 0;
 	unsigned char *ptr_dst = (unsigned char *)dst;
 	const unsigned char *ptr_src = (const unsigned char *)src;
-	// go through the mem block to check overlapping
-	// 1. fix dst, check src - str src is pre or overlapped with dst, or not.
-	while (i < len)
-	{
-		if (ptr_src + i == ptr_dst)
-		{
-			//call function static backward_cp
-			return (dst);
-		}
-		else
-			i++;
-	}
-	i = 0;
-	while (i < len)
-	{
-		if (ptr_src == ptr_dst + i)
-		{
-			//call function static forward_cp
-			return (dst);
-		}
-		else
-			i++;
-	}
-	return (dst);
+	/* check the positions of memory blocks 
+	*/ 
+	if (ptr_dst == ptr_src || len == 0)
+		return dst;
+	if(ptr_dst <  ptr_src || ptr_src + len <= ptr_dst )
+		ft_forward_cp(ptr_dst, ptr_src, len);
+	else
+		ft_backward_cp(ptr_dst, ptr_src, len);
+	return dst;
 }
 
+// copy the src string to dst. output the length of the trying-to-create, ie. src
+size_t	ft_strlcpy(char * dst, const char * src, size_t dstsize)
+{
+	size_t srclen = 0;
+	size_t to_copy;
+	if (dstsize > 0)
+		to_copy = dstsize - 1;
+	else
+		to_copy = 0;
+	
+	while (to_copy > 0 && src[srclen])
+	{
+		dst[srclen] = src[srclen];
+		srclen++;
+		to_copy--;
+	}
+	if (dstsize > 0)
+		dst[srclen] = '\0';
+	while (src[srclen])
+		srclen ++;
+	return (srclen);
 
+}
+/* notice: 
+	1. returned length is the literal string length without the null terminator. 
+	2. if dst and src overlap, then the behavior is undefined.
+	3. if len <= dstsize, then the user know the output is truncated.
+*/
 
+size_t	ft_strlcat(char * dst, const char * src, size_t dstsize)
+{
+	size_t dstlen = 0;
+	size_t srclen = 0;
+	
+	while (dst[dstlen])
+		dstlen++;
+
+	while (src[srclen] && dstsize > srclen + dstlen + 1 )
+	{
+		dst[srclen + dstlen] = src[srclen];
+		srclen++;
+	}
+	if (dstsize > dstlen)
+		dst[srclen + dstlen] = '\0';
+
+	while (src[srclen])
+		srclen ++;
+
+	return (srclen + dstlen);
+}
 
 #include <stdio.h>
 int main(void) {
