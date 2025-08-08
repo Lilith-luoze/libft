@@ -3,6 +3,7 @@
     "workbench.preferredHighContrastLightColorTheme": "Default Light Modern",
     "workbench.preferredLightColorTheme": "Solarized Light",
     "files.associations": {
-        "bitset": "c"
+        "bitset": "c",
+        "stdio.h": "c"
     }
 }

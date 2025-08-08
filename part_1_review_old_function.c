@@ -1,4 +1,6 @@
 #include <stddef.h>
+#include <stdlib.h>
+#include <limits.h>
 
 static int	ft_isupper(int c)
 {
@@ -62,7 +64,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-// memset : set a block of memory to a value.
+// memset : set a block of memory to bytes of value.
 void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned char	*ptr;
@@ -79,7 +81,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
-// bzero : be zero, mem!
+// bzero : all be zero, bytes!
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
@@ -160,7 +162,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 }
 
 // copy the src string to dst. output the length of the trying-to-create,
-ie.src size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	srclen;
 	size_t	to_copy;
@@ -188,9 +190,8 @@ ie.src size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	3. if len <= dstsize, then the user know the output is truncated.
 */
 
-// same category as strlcpy; one of the target is to NULL-terminate dst,
-which may not have it.size_t ft_strlcat(char *dst, const char *src,
-	size_t dstsize)
+// same category as strlcpy; one of the target is to NULL-terminate dst, which may not have it.
+size_t ft_strlcat(char *dst, const char *src,size_t dstsize)
 {
 	size_t	dstlen;
 	size_t	srclen;
@@ -346,9 +347,54 @@ char *	ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
+// integer overflow is undefined behavior
 int	ft_atoi(const char *str)
 {
+    int digit;
+    int result;
+    int sign;
+    result = 0;
+    sign = 1;
 
+	if (!str)
+    	return (0);
+    while ((*str >= 9 && *str <= 13) || *str == ' ' )
+        str++;
+    if ( *str == '+' || *str == '-'  )
+    {
+        if (*str == '-')
+            sign = -1;
+        str++;
+    }
+    while (*str >= '0' && *str <= '9')
+    {
+        digit = *str - '0';   
+        result = result * 10 + digit;
+        str++;
+	}
+    return (result * sign);
+}
+// continuously allocate memory and set them to bytes of zero
+
+	// how to detect overflow
+void *	ft_calloc(size_t count, size_t size)
+{
+	void * ptr = NULL;
+	size_t bf = 0;
+
+	if(size && count > SIZE_MAX / size)
+		return (NULL);
+	bf = count * size; // overflow possibility after multiplicatio
+
+	if (bf == 0)
+		bf = 1; // super smart
+
+	ptr = malloc(bf);
+	if (ptr == NULL)
+		return (NULL);
+
+	ft_bzero(ptr, bf); // call your friend.
+	return (ptr);
 }
 
 #include <stdio.h>
