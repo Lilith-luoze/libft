@@ -397,10 +397,86 @@ void *	ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-#include <stdio.h>
-
-int	main(void)
-{
-	printf("test out: %i \n", ft_isupper(EOF));
-	return (0);
+ char *ft_strdup(const char *s)
+ {
+	// malloc 
+    char *dup;
+    size_t i;
+    i = 0;
+    dup = malloc((ft_strlen(s) +  1 ) * sizeof(*s));
+    if (dup == NULL)
+        return (NULL);
+    //dupicate
+    while (s[i])
+    {
+        dup[i] = s[i];
+        i++;
+    }
+    dup[i] = '\0';
+    return (dup);
 }
+
+// from now on all from Part 2 Additional functions. they have almost similar functioanlity but all(?) use malloc
+char *ft_substr(char const *s, unsigned int start,size_t len)
+{
+	char *sub;  /*malloc len of len + 1 ; use both len and null terminator as stop sign*/
+	size_t i = 0;
+	size_t len_s ;
+	if (s == NULL)
+		return (NULL);
+	len_s = ft_strlen(s);
+	/* compare the start position and strlen of s */
+	if (start >= len_s)  
+		return (ft_strdup(""));
+
+	if (len_s - start < len)	/*avoid overallocation*/
+		len = len_s - start;
+	sub = ft_calloc( len + 1,sizeof(*s)); /*reuse your piece of code*/
+	if (sub == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		sub[i] = s[i + start];
+		i++;
+	}
+	return (sub);
+}
+
+
+char *ft_strjoin(char const *s1, char const *s2)
+{
+	char * result;
+	size_t i = 0;
+	size_t j = 0;
+	result = NULL;
+	if (!s1 || !s2)
+    	return (NULL);
+
+	result = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1 , sizeof(*s1));
+	if (!result)
+		return (NULL);
+	while (s1[i])
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		result[i] = s2[j];
+		j++;
+		i++;
+	}
+	return (result);
+}
+
+char *ft_strtrim(char const *s1, char const *set)
+{
+
+}
+// #include <stdio.h>
+
+// int	main(void)
+// {
+// 	printf("test out: %i \n", ft_isupper(EOF));
+// 	return (0);
+// }
