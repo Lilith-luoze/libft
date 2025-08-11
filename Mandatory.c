@@ -1,9 +1,5 @@
-#include "/home/lilith/libft/part_1_review_old_function.h"
+#include "libft.h"
 
-#include <limits.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdint.h>
 
 
 static int	ft_isupper(int c)
@@ -625,6 +621,7 @@ char	**ft_split(char const *s, char c)
 	return (ptr);
 }
 // switch back to malloc and null
+//pointer funciton 1
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	unsigned int i = 0;
@@ -642,6 +639,65 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	out[i] = '\0';
 	return (out);
 }
+
+
+// pointer function 2
+void ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int i;
+	if (!s || !f)
+		return;
+	i = 0;
+	while (s[i])
+	{
+		f(i, s + i);
+		i++;
+	}
+}
+# include <unistd.h>
+
+void ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+void ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return;
+	write(fd, s, ft_strlen(s));
+}
+
+void ft_putendl_fd(char *s, int fd)
+{
+	if (!s)
+		return;
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n",1);
+}
+
+static void ft_putnbr_rec(long nl, int fd)
+{
+	char ch;
+    if (nl >= 10)
+        ft_putnbr_rec(nl / 10, fd);
+    ch = nl % 10 + '0';
+    write(fd,  &ch, 1);
+}
+
+void ft_putnbr_fd(int n, int fd)
+{
+	long nl;
+	nl = n;
+	if (nl < 0)    
+    {
+        write(fd, "-", 1);
+        nl = -nl;
+    }     
+	ft_putnbr_rec(nl , fd);
+}
+
+
+
 
 // #include <stdio.h>
 
