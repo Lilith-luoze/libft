@@ -4,6 +4,7 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -11,8 +12,6 @@ typedef struct s_list
 	struct s_list *next; // pointer to the next node, or NULL at the end
 }				t_list;
 
-static int		ft_isupper(int);
-static int		ft_islower(int);
 int				ft_isalpha(int);
 int				ft_isdigit(int);
 int				ft_isalnum(int);
@@ -21,9 +20,7 @@ int				ft_isprint(int);
 size_t			ft_strlen(const char *);
 void			*ft_memset(void *, int, size_t);
 void			ft_bzero(void *, size_t);
-void			*ft_memcpy(void *, const void *, size_t);
-static void		ft_backward_cp(unsigned char *, const unsigned char *, size_t);
-static void		ft_forward_cp(unsigned char *, const unsigned char *, size_t);
+void			*ft_memcpy(void *, const void *, size_t);static void		ft_forward_cp(unsigned char *, const unsigned char *, size_t);
 void			*ft_memmove(void *, const void *, size_t);
 size_t			ft_strlcpy(char *, const char *, size_t);
 size_t			ft_strlcat(char *, const char *, size_t);
@@ -42,11 +39,7 @@ char			*ft_strjoin(char const *, char const *);
 char			*ft_strtrim(char const *, char const *);
 static size_t	ft_itoa_len(int);
 char			*ft_itoa(int);
-char			*ft_substr(char const *, unsigned int, size_t);
-static size_t	ft_word_count(char const *, char);
-static void		*ft_free_split(void **, size_t);
-static size_t	ft_wordlen(char const *, char);
-static void		ft_init_vars(size_t *, size_t *, size_t *, char ***);
+char			*ft_substr(char const *, unsigned int, size_t);static void		*ft_free_split(void **, size_t);
 char			**ft_split(char const *, char);
 char			*ft_strmapi(char const *, char (*)(unsigned int, char));
 
@@ -59,5 +52,17 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 
 void			ft_putnbr_fd(int n, int fd);
+
+t_list *ft_lstnew(void *content);
+void ft_lstadd_front(t_list **lst, t_list *new);
+int ft_lstsize(t_list *lst);
+t_list *ft_lstlast(t_list *lst);
+void ft_lstadd_back(t_list **lst, t_list *new);
+void ft_lstdelone(t_list *lst, void (*del)(void *));
+void ft_lstclear(t_list **lst, void (*del)(void *));
+void ft_lstiter(t_list *lst, void (*f)(void *));
+t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+
 
 #endif /// HOME/LILITH/LIBFT/PART_1_REVIEW_OLD_FUNCTION_H
