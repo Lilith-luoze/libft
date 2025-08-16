@@ -6,21 +6,22 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:11 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:50:00 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:39:46 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+
 // integer overflow is undefined behavior
 int	ft_atoi(const char *str)
 {
-	int	digit;
-	int	result;
-	int	sign;
-
+	int digit;
+	int result;
+	int sign;
 	result = 0;
 	sign = 1;
+
 	while ((*str >= 9 && *str <= 13) || *str == ' ')
 		str++;
 	if (*str == '+' || *str == '-')
@@ -39,15 +40,14 @@ int	ft_atoi(const char *str)
 }
 
 // count the length of int.
-static size_t	ft_itoa_len(int nbr)
+static size_t ft_itoa_len(int nbr)
 {
-	size_t	len;
-
+	size_t len;
 	len = 0;
 	if (nbr == 0)
-		len++;
+		len++; /*for jump over the while loop*/
 	if (nbr < 0)
-		len++;
+		len++; /*for '-'*/
 	while (nbr != 0)
 	{
 		nbr = nbr / 10;
@@ -59,10 +59,9 @@ static size_t	ft_itoa_len(int nbr)
 /*itoa return a string that can be freed*/
 char	*ft_itoa(int n)
 {
-	char	*str;
-	size_t	len;
-	size_t	i;
-
+	char *str;
+	size_t len;
+	size_t i;
 	i = 0;
 	str = NULL;
 	len = ft_itoa_len(n);

@@ -6,24 +6,21 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:43 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:47:48 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:23:44 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_word_count(char const *s, char c)
+static size_t ft_word_count(char const *s, char c)
 {
-	size_t	num_words;
-	size_t	i;
-	int		met_delim;
-
-	num_words = 0;
-	met_delim = 1;
+	size_t num_words = 0;
+	size_t i;
+	int met_delim = 1;
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != c && met_delim == 1)
+		if(s[i] != c && met_delim == 1)
 		{
 			num_words++;
 			met_delim = 0;
@@ -34,10 +31,9 @@ static size_t	ft_word_count(char const *s, char c)
 	}
 	return (num_words);
 }
-static char	**ft_free_split(char **ptr, size_t n)
+static char **ft_free_split(char **ptr, size_t n)
 {
-	size_t	offset;
-
+	size_t offset;
 	offset = 0;
 	while (offset < n)
 	{
@@ -48,17 +44,15 @@ static char	**ft_free_split(char **ptr, size_t n)
 	return (NULL);
 }
 /*only count effective words*/
-// funtion free before if one malloc failed
-static size_t	ft_wordlen(char const *s, char c)
+//funtion free before if one malloc failed
+static size_t ft_wordlen(char const *s, char c)
 {
-	size_t	len;
-
-	len = 0;
-	while (s[len] && s[len] != c)
+	size_t len = 0;
+	while(s[len] && s[len] != c)
 		len++;
 	return (len);
 }
-static void	ft_init_vars(size_t *num_words, size_t *i, size_t *k, char ***ptr)
+static void ft_init_vars(size_t *num_words, size_t *i, size_t *k, char ***ptr)
 {
 	*k = 0;
 	*i = 0;
@@ -68,26 +62,25 @@ static void	ft_init_vars(size_t *num_words, size_t *i, size_t *k, char ***ptr)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	num_words;
-	size_t	i;
-	size_t	k;
-	size_t	len;
-	char	**ptr;
-
-	if (!s)
+	size_t num_words;
+	size_t i;
+	size_t k;
+	size_t len;
+	char **ptr;
+	if (!s) 
 		return (NULL);
-	ft_init_vars(&num_words, &i, &k, &ptr);
-	num_words = ft_word_count(s, c);
-	ptr = ft_calloc(num_words + 1, sizeof(*ptr));
+	ft_init_vars(&num_words,&i, &k, &ptr);
+	num_words = ft_word_count(s ,c);
+	ptr = ft_calloc(num_words + 1 , sizeof(*ptr));
 	if (!ptr)
-		return (NULL);
+		return(NULL);
 	while (i < num_words)
-	{
-		while (s[k] == c)
+	{ 
+		while(s[k] == c)
 			k++;
-		len = ft_wordlen(s + k, c);
-		ptr[i] = ft_substr(s, k, len);
-		if (!ptr[i])
+		len= ft_wordlen(s + k, c);
+		ptr[i] = ft_substr(s, k,len);
+		if(!ptr[i])
 			return (ft_free_split(ptr, i));
 		k = len + k;
 		i++;

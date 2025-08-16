@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:20 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:23:21 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:50:14 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isalpha(int c)
 
 int	ft_isdigit(int c)
 {
-	return ( c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
 int	ft_isalnum(int c)
@@ -34,5 +34,5 @@ int	ft_isascii(int c)
 
 int	ft_isprint(int c)
 {
-	return ( c >= 32 && c <= 126);
+	return (c >= 32 && c <= 126);
 }

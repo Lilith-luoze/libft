@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctype2.c                                        :+:      :+:    :+:   */
+/*   ft_ctype1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 22:23:25 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:50:23 by luozguo          ###   ########.fr       */
+/*   Created: 2025/08/16 22:23:20 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/16 22:23:21 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+int	ft_isalpha(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		c = c - 'a' + 'A';
-	return (c);
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
 
-int	ft_tolower(int c)
+int	ft_isdigit(int c)
 {
-	if (c >= 'A' && c <= 'Z')
-		c = c - 'A' + 'a';
-	return (c);
+	return ( c >= '0' && c <= '9');
+}
+
+int	ft_isalnum(int c)
+{
+	return (ft_isalpha(c) || ft_isdigit(c));
+}
+
+int	ft_isascii(int c)
+{
+	return (c >= 0 && c <= 127);
+}
+
+int	ft_isprint(int c)
+{
+	return ( c >= 32 && c <= 126);
 }

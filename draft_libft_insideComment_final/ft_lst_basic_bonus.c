@@ -6,17 +6,17 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:30 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:46:55 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:23:31 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "libft.h"
 
 /*create node*/
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*node;
-
+	t_list *node; /*pointer to this t_list*/
 	node = malloc(sizeof(t_list));
 	if (!node)
 		return (NULL);
@@ -29,6 +29,7 @@ t_list	*ft_lstnew(void *content)
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	new->next = *lst;
+	/*update the head (this is why we need pass t_list **)*/
 	*lst = new;
 }
 
@@ -74,3 +75,4 @@ t_list	*ft_lstlast(t_list *lst)
 		lst = lst->next;
 	return (lst);
 }
+

@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:37 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:47:16 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:23:38 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // Always use unsigned char for raw memory functions.
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const unsigned char	*str = (const unsigned char *)s;
-	unsigned char		uc;
-	size_t				i;
+	const unsigned char *str = (const unsigned char *)s;
+	unsigned char uc;
+	size_t i;
 
 	uc = (unsigned char)c;
 	i = 0;
@@ -34,11 +34,10 @@ void	*ft_memchr(const void *s, int c, size_t n)
 // compare two strings, both are n-bytes long
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char	*str1 = (const unsigned char *)s1;
-	const unsigned char	*str2 = (const unsigned char *)s2;
-	size_t				i;
+	const unsigned char *str1 = (const unsigned char *)s1;
+	const unsigned char *str2 = (const unsigned char *)s2;
+	size_t i = 0;
 
-	i = 0;
 	while (i < n && str1[i] == str2[i])
 		i++;
 	if (i == n)
@@ -46,12 +45,13 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	return (str1[i] - str2[i]);
 }
 
+
 // memset : set a block of memory to bytes of value.
 void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char	*ptr;
-	unsigned char	ar;
-	size_t			i;
+	unsigned char *ptr;
+	unsigned char ar;
+	size_t i;
 
 	ptr = (unsigned char *)b;
 	ar = c;
@@ -66,8 +66,8 @@ void	*ft_memset(void *b, int c, size_t len)
 // bzero : all be zero, bytes!
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*ptr;
-	size_t			i;
+	unsigned char *ptr;
+	size_t i;
 
 	ptr = (unsigned char *)s;
 	i = 0;
@@ -82,10 +82,9 @@ void	ft_bzero(void *s, size_t n)
 // memcpy : undefined if dst overlap with src
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t				i;
-	unsigned char		*ptr_dst;
-	const unsigned char	*ptr_src = (const unsigned char *)src;
-
+	size_t i;
+	unsigned char *ptr_dst;
+	const unsigned char *ptr_src = (const unsigned char *)src;
 	if (!dst && !src)
 		return (NULL);
 	i = 0;

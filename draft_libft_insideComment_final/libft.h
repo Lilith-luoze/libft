@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:25:28 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:53:02 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:25:29 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <stdint.h> // For SIZE_MAX
 # include <stdlib.h> // For size_t, malloc, free
 # include <unistd.h> // For write
-
 typedef struct s_list
 {
 	void			*content;

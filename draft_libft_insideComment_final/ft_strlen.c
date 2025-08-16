@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctype2.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 22:23:25 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:50:23 by luozguo          ###   ########.fr       */
+/*   Created: 2025/08/16 22:23:56 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/16 22:23:57 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+size_t	ft_strlen(const char *s)
 {
-	if (c >= 'a' && c <= 'z')
-		c = c - 'a' + 'A';
-	return (c);
-}
+	size_t i;
 
-int	ft_tolower(int c)
-{
-	if (c >= 'A' && c <= 'Z')
-		c = c - 'A' + 'a';
-	return (c);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

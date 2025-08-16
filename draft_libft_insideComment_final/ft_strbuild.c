@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:50 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:53:42 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:23:51 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sub;
-	size_t	i;
-	size_t	len_s;
-
-	i = 0;
+	char *sub; /*malloc len of len
+		+ 1 ; use both len and null terminator as stop sign*/
+	size_t i = 0;
+	size_t len_s;
 	if (s == NULL)
 		return (NULL);
 	len_s = ft_strlen(s);
+	/* compare the start position and strlen of s */
 	if (start >= len_s)
 		return (ft_strdup(""));
-	if (len_s - start < len)
+
+	if (len_s - start < len) /*avoid overallocation*/
 		len = len_s - start;
-	sub = ft_calloc(len + 1, sizeof(*s));
+	sub = ft_calloc(len + 1, sizeof(*s)); /*reuse your piece of code*/
 	if (sub == NULL)
 		return (NULL);
 	while (i < len)
@@ -37,19 +38,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-// from now on all from Part 2 Additional functions.
-// they have almost similar functioanlity but all(?) use malloc
+// from now on all from Part 2 Additional functions. they have almost similar functioanlity but all(?) use malloc
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*result;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
+	char *result;
+	size_t i = 0;
+	size_t j = 0;
 	result = NULL;
 	if (!s1 || !s2)
 		return (NULL);
+
 	result = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(*s1));
 	if (!result)
 		return (NULL);
@@ -68,11 +66,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
+/*temp good; check edge again*/
 {
-	size_t	start;
-	size_t	len;
-	char	*out;
-
+	size_t start;
+	size_t len;
+	char *out;
 	out = NULL;
 	if (!s1)
 		return (NULL);
@@ -81,7 +79,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (ft_calloc(1, 1));
 	start = 0;
 	while (s1[start] && ft_strchr(set, (int)s1[start]))
-		start++;
+		start++; /*inclusive start index*/
 	while (len > start && ft_strchr(set, (int)s1[len - 1]))
 		len--;
 	if (start <= len)
@@ -94,15 +92,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (out);
 }
 
+
+
 // switch back to malloc and null
-// pointer funciton 1
+//pointer funciton 1
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*out;
-
-	i = 0;
-	out = NULL;
+	unsigned int i = 0;
+	char *out = NULL;
 	if (!s || !f)
 		return (NULL);
 	out = malloc(ft_strlen(s) + 1);
@@ -117,13 +114,13 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (out);
 }
 
-// pointer function 2
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
-{
-	unsigned int	i;
 
+// pointer function 2
+void ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int i;
 	if (!s || !f)
-		return ;
+		return;
 	i = 0;
 	while (s[i])
 	{

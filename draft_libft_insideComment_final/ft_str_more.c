@@ -6,17 +6,16 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:47 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:54:41 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:23:48 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 // copy the src string to dst. output the length of the trying-to-create,
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	srclen;
-	size_t	to_copy;
+	size_t srclen;
+	size_t to_copy;
 
 	srclen = 0;
 	if (dstsize > 0)
@@ -41,18 +40,22 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	3. if len <= dstsize, then the user know the output is truncated.
 */
 
-// same category as strlcpy;
-// one of the target is to NULL-terminate dst,which may not have it.
+// same category as strlcpy; one of the target is to NULL-terminate dst,which may not have it.
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dstlen;
-	size_t	srclen;
+	size_t dstlen;
+	size_t srclen;
 
 	dstlen = 0;
 	srclen = 0;
 	while (dstlen < dstsize && dst[dstlen])
 		dstlen++;
+	/*
+	NULL termination - advantage: 1. we can evaluate
+	the strlen easily; 2. protect from being
+	accessing out of bound easily
+	*/
 	while (src[srclen] && dstsize > srclen + dstlen + 1)
 	{
 		dst[srclen + dstlen] = src[srclen];
@@ -65,26 +68,26 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (srclen + dstlen);
 }
 
-/*	needle is null-terminated; haystack might not.
-	the stop condition would be either
+
+/*
+	needle is null-terminated; haystack might not. the stop condition would be either
 	condition is met : len characters are searched or met a '\0'
-	so it's not that a function should never segfault,
-		but it should never segfault
-	when the user is using it correctly. */
+	so it's not that a function should never segfault, but it should never segfault
+	when the user is using it correctly.
+*/
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	size_t	nlen;
+	size_t i = 0;
+	size_t j = 0;
+	size_t nlen = 0;
 
-	i = 0;
-	j = 0;
-	nlen = 0;
 	if (needle[0] == '\0')
 		return ((char *)haystack);
+
 	while (needle[nlen])
 		nlen++;
-	while (haystack[i] && i + nlen <= len)
+
+	while (haystack[i] && i + nlen <= len )
 	{
 		if (haystack[i] == needle[0])
 		{

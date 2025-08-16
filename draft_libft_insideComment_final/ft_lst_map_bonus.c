@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:33 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:52:37 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/16 22:32:20 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	ft_init_vars(t_list **out, t_list **tail, t_list **node, void **cnt)
 /* creates a new list with new content (original untouched).*/
 /*  1. conditionals in the loop to specify the header(out).
 	2. del() the content only half-way inside the new node.*/
-
 static void	ft_append_n_update(t_list **out, t_list **tail, t_list **node,
 		t_list **lst)
 {
