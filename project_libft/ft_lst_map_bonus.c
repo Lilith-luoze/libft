@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lst_map_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/16 22:23:33 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/16 22:32:20 by luozguo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
-
 
 static void	ft_init_vars(t_list **out, t_list **tail, t_list **node, void **cnt)
 {
@@ -12,14 +22,25 @@ static void	ft_init_vars(t_list **out, t_list **tail, t_list **node, void **cnt)
 /* creates a new list with new content (original untouched).*/
 /*  1. conditionals in the loop to specify the header(out).
 	2. del() the content only half-way inside the new node.*/
-static void ft_append_n_update(t_list **out, t_list **tail, t_list	**node, t_list **lst)
+static void	ft_append_n_update(t_list **out, t_list **tail, t_list **node,
+		t_list **lst)
 {
 	if (!(*out))
 		*out = *node;
 	else
 		(*tail)->next = *node;
 	*tail = *node;
-	*lst = (*lst) -> next;
+	*lst = (*lst)->next;
+}
+
+/*node alloc fail. del content for node on building,
+	clear all nodes already linked*/
+static void	*ft_lstclean(t_list **out, void *cnt, void (*del)(void *))
+{
+	if (cnt)
+		del(cnt);
+	ft_lstclear(out, del);
+	return (NULL);
 }
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
@@ -35,15 +56,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst)
 	{
 		cnt = f(lst->content);
-		node = ft_lstnew(cnt);
-		if (!cnt || !node)
+		if (!cnt)
 		{
-			if (cnt)
-				del(cnt);
 			ft_lstclear(&out, del);
 			return (NULL);
 		}
-		ft_append_n_update(&out,  &tail, &node, &lst);
+		node = ft_lstnew(cnt);
+		if (!node)
+			return (ft_lstclean(&out, cnt, del));
+		ft_append_n_update(&out, &tail, &node, &lst);
 	}
 	return (out);
 }

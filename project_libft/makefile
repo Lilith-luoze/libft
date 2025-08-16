@@ -8,12 +8,12 @@ AR      := ar
 ARFLAGS := rcs
 RM      := rm -f
 
-# ---- headers (add more if you really have them)
+# ---- headers
 HDRS    := libft.h
 INCLUDES:= -I .
 
-# ---- sources (your actual files)
-SRCS := \
+# ---- sources
+MSRCS := \
 	ft_alloc.c \
 	ft_convert.c \
 	ft_ctype1.c \
@@ -33,32 +33,31 @@ BSRCS := \
 	ft_lst_ops_bonus.c
 
 # ---- derived object lists
-OBJS  := $(SRCS:.c=.o)
+MOBJS  := $(MSRCS:.c=.o)
 BOBJS := $(BSRCS:.c=.o)
-
+.DEFAULT_GOAL := all
 # ---- rules (highlights mandatory ones: all NAME clean fclean re)
 .PHONY: all bonus clean fclean re 
-# rule 1: all . build the library
+# rule 1: all . build the MANDATORY library
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+$(NAME): $(MOBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(MOBJS)
 
 %.o: %.c $(HDRS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # rule 2: bonus . build the bonus functions into the library
-# once make bonus, archive keeps bonus members until fclean
-bonus: OBJS += $(BOBJS) 
-bonus: $(NAME)
+bonus: $(BOBJS) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $(BOBJS)
 
 # rule 3: clean . clean all object files
 clean:
-	$(RM) $(OBJS) $(BOBJS)
+	$(RM) $(MOBJS) $(BOBJS)
 
 # rule 4: fclean . clean all object files and the library
 fclean: clean
 	$(RM) $(NAME)
 
-# rule 5: re . rebuild the library
+# rule 5: re . rebuild the MANDATORY library
 re: fclean all

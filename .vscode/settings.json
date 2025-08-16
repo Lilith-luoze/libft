@@ -5,7 +5,10 @@
     "files.associations": {
         "bitset": "c",
         "stdio.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "limits.h": "c"
     },
     "makefile.configureOnOpen": true
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_str_more.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/16 22:23:47 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/16 22:23:48 by luozguo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 // copy the src string to dst. output the length of the trying-to-create,
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -60,6 +72,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 /*
 	needle is null-terminated; haystack might not. the stop condition would be either
 	condition is met : len characters are searched or met a '\0'
+	so it's not that a function should never segfault, but it should never segfault
+	when the user is using it correctly.
 */
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
@@ -73,7 +87,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	while (needle[nlen])
 		nlen++;
 
-	while (i + nlen <= len && haystack[i])
+	while (haystack[i] && i + nlen <= len )
 	{
 		if (haystack[i] == needle[0])
 		{

@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/16 22:25:28 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/16 22:25:29 by luozguo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
-# include <limits.h>
-# include <stddef.h>
-# include <stdint.h>
-# include <stdlib.h>
-# include <unistd.h>
-
+# include <stdint.h> // For SIZE_MAX
+# include <stdlib.h> // For size_t, malloc, free
+# include <unistd.h> // For write
 typedef struct s_list
 {
 	void			*content;
