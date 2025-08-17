@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:37 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:47:16 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/17 17:36:44 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	*ft_memset(void *b, int c, size_t len)
 	}
 	return (b);
 }
+
 // bzero : all be zero, bytes!
 void	ft_bzero(void *s, size_t n)
 {

@@ -6,13 +6,27 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:43 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:47:48 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/17 17:55:20 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_word_count(char const *s, char c)
+/*count one word length. update the iterator k to point to the word*/
+static size_t	ft_wordlen(char const *s, char c, size_t *k)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[*k] == c)
+		(*k)++;
+	while (s[*k + len] && s[*k + len] != c)
+		len++;
+	return (len);
+}
+
+/*count how many words sep by char c*/
+static size_t	ft_wordcount(char const *s, char c)
 {
 	size_t	num_words;
 	size_t	i;
@@ -34,6 +48,8 @@ static size_t	ft_word_count(char const *s, char c)
 	}
 	return (num_words);
 }
+
+/*free the allocated memory when things go wrong*/
 static char	**ft_free_split(char **ptr, size_t n)
 {
 	size_t	offset;
@@ -47,17 +63,7 @@ static char	**ft_free_split(char **ptr, size_t n)
 	free(ptr);
 	return (NULL);
 }
-/*only count effective words*/
-// funtion free before if one malloc failed
-static size_t	ft_wordlen(char const *s, char c)
-{
-	size_t	len;
 
-	len = 0;
-	while (s[len] && s[len] != c)
-		len++;
-	return (len);
-}
 static void	ft_init_vars(size_t *num_words, size_t *i, size_t *k, char ***ptr)
 {
 	*k = 0;
@@ -77,15 +83,13 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	ft_init_vars(&num_words, &i, &k, &ptr);
-	num_words = ft_word_count(s, c);
+	num_words = ft_wordcount(s, c);
 	ptr = ft_calloc(num_words + 1, sizeof(*ptr));
 	if (!ptr)
 		return (NULL);
 	while (i < num_words)
 	{
-		while (s[k] == c)
-			k++;
-		len = ft_wordlen(s + k, c);
+		len = ft_wordlen(s, c, &k);
 		ptr[i] = ft_substr(s, k, len);
 		if (!ptr[i])
 			return (ft_free_split(ptr, i));

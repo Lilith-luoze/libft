@@ -6,7 +6,7 @@
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/16 22:23:47 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:54:41 by luozguo          ###   ########.fr       */
+/*   Updated: 2025/08/17 17:16:25 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,21 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	so it's not that a function should never segfault,
 		but it should never segfault
 	when the user is using it correctly. */
+
+static void	ft_init_vars(size_t *nlen, size_t *i, size_t *j)
+{
+	*j = 0;
+	*i = 0;
+	*nlen = 0;
+}
+
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
 	size_t	nlen;
 
-	i = 0;
-	j = 0;
-	nlen = 0;
+	ft_init_vars(&nlen, &i, &j);
 	if (needle[0] == '\0')
 		return ((char *)haystack);
 	while (needle[nlen])
