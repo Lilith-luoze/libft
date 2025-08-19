@@ -1,35 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alloc.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 22:23:03 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/17 18:33:45 by luozguo          ###   ########.fr       */
+/*   Created: 2025/08/18 15:15:16 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/18 15:17:56 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// continuously allocate memory and set them to bytes of zero
-// how to detect overflow : use an unequality as condition constraint
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-	size_t	buffer;
-
-	ptr = NULL;
-	buffer = 0;
-	if ((size && count > SIZE_MAX / size) || count == 0 || size == 0)
-		return (NULL);
-	buffer = count * size;
-	ptr = malloc(buffer);
-	if (ptr == NULL)
-		return (NULL);
-	ft_bzero(ptr, buffer);
-	return (ptr);
-}
 
 char	*ft_strdup(const char *s)
 {

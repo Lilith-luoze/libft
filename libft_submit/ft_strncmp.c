@@ -1,51 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_basic.c                                     :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 22:23:45 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/17 17:16:38 by luozguo          ###   ########.fr       */
+/*   Created: 2025/08/18 15:15:45 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/18 15:15:50 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// copy the src string to dst. output the length of the trying-to-create,
 #include "libft.h"
-
-// treat the search range like a string
-char	*ft_strchr(const char *s, int c)
-{
-	char	ch;
-
-	ch = (char)c;
-	while (*s)
-	{
-		if (*s == ch)
-			return ((char *)s);
-		s++;
-	}
-	if (ch == '\0')
-		return ((char *)s);
-	return (NULL);
-}
-
-char	*ft_strrchr(const char *s, int c)
-{
-	const char	*find = NULL;
-	char		ch;
-
-	ch = (char)c;
-	while (*s)
-	{
-		if (*s == ch)
-			find = s;
-		s++;
-	}
-	if (ch == '\0')
-		return ((char *)s);
-	return ((char *)find);
-}
 
 // factor affecting corner case: size_t n == 0.
 // 1. if size_t n == 0, it shouldn't compare at all.

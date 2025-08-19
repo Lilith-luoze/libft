@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 22:23:40 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/17 17:35:21 by luozguo          ###   ########.fr       */
+/*   Created: 2025/08/18 15:10:26 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/18 15:17:14 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ static void	ft_forward_cp(unsigned char *dst, const unsigned char *src,
 // check the overlap of memory
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t				i;
 	unsigned char		*ptr_dst;
 	const unsigned char	*ptr_src = (const unsigned char *)src;
 
-	i = 0;
 	ptr_dst = (unsigned char *)dst;
 	if (ptr_dst == ptr_src || len == 0)
 		return (dst);

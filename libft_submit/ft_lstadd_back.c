@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_basic_bonus.c                               :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 22:23:30 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:46:55 by luozguo          ###   ########.fr       */
+/*   Created: 2025/08/18 15:09:17 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/18 15:09:18 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*create node*/
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*node;
-
-	node = malloc(sizeof(t_list));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
-}
-
-/*add an existing node to the front */
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	new->next = *lst;
-	*lst = new;
-}
 
 /*add an existing node to the back.
 if the list is empty, make the node the head */
@@ -47,30 +27,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	last = ft_lstlast(*lst);
 	last->next = new;
-}
-
-/* count the number of nodes of a list*/
-int	ft_lstsize(t_list *lst)
-{
-	int		size;
-	t_list	*node;
-
-	size = 0;
-	node = lst;
-	while (node)
-	{
-		size++;
-		node = node->next;
-	}
-	return (size);
-}
-
-/*go to a list's last node*/
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
 }

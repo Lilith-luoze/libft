@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ctype2.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luozguo <luozguo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/16 22:23:25 by luozguo           #+#    #+#             */
-/*   Updated: 2025/08/16 22:50:23 by luozguo          ###   ########.fr       */
+/*   Created: 2025/08/18 15:10:01 by luozguo           #+#    #+#             */
+/*   Updated: 2025/08/18 15:10:02 by luozguo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+// compare two strings, both are n-bytes long
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (c >= 'a' && c <= 'z')
-		c = c - 'a' + 'A';
-	return (c);
-}
+	const unsigned char	*str1 = (const unsigned char *)s1;
+	const unsigned char	*str2 = (const unsigned char *)s2;
+	size_t				i;
 
-int	ft_tolower(int c)
-{
-	if (c >= 'A' && c <= 'Z')
-		c = c - 'A' + 'a';
-	return (c);
+	i = 0;
+	while (i < n && str1[i] == str2[i])
+		i++;
+	if (i == n)
+		return (0);
+	return (str1[i] - str2[i]);
 }
